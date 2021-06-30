@@ -34,11 +34,11 @@ describe OmniAuth::Strategies::Mattermost do
     end
 
     it 'should have correct authorize url' do
-      expect(subject.options.client_options.authorize_url).to eq('/oauth_auth.do')
+      expect(subject.options.client_options.authorize_url).to eq('/oauth/authorize')
     end
 
     it 'should have correct token url' do
-      expect(subject.options.client_options.token_url).to eq('/oauth_token.do')
+      expect(subject.options.client_options.token_url).to eq('/oauth/access_token')
     end
 
     describe 'should be overrideable' do
