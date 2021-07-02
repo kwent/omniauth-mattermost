@@ -51,8 +51,16 @@ module OmniAuth
 
       uid { smart_site }
 
+      info do
+        {
+          username: user['username'],
+          email: user['email'],
+          email_verified: user['email_verified']
+        }
+      end
+
       extra do
-        { raw_info: raw_info, site: smart_site, instance_url: instance_url }
+        { raw_info: raw_info, site: smart_site, instance_url: instance_url, user: user }
       end
 
       def raw_info
@@ -73,6 +81,11 @@ module OmniAuth
 
       def instance_url
         @instance_url ||= smart_site if smart_site
+      end
+
+      def user
+        access_token.options[:mode] = :header
+        @user ||= access_token.get('api/v4/users/me', :headers => { 'Content-Type' => 'application/json' }).parsed
       end
 
       def callback_url
