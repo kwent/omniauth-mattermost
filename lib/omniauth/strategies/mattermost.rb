@@ -49,7 +49,7 @@ module OmniAuth
         end
       end
 
-      uid { info['id'] }
+      uid { user['id'] }
 
       info do
         {
