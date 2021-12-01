@@ -49,10 +49,11 @@ module OmniAuth
         end
       end
 
-      uid { smart_site }
+      uid { info['id'] }
 
       info do
         {
+          id: user['id'],
           username: user['username'],
           email: user['email'],
           email_verified: user['email_verified']
